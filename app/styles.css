@@ -1,0 +1,80 @@
+:root {
+  color-scheme: dark;
+  --bg-primary: #070b1d;
+  --bg-surface: rgba(11, 17, 41, 0.94);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #eef2ff;
+  --accent: #5bd0ff;
+  --accent-strong: #62b3ff;
+}
+
+html, body {
+  min-height: 100%;
+  background: radial-gradient(circle at top left, rgba(93,208,255,0.18), transparent 24%),
+              radial-gradient(circle at bottom right, rgba(255,133,133,0.14), transparent 20%),
+              linear-gradient(180deg, #050815 0%, #090f23 100%);
+  color: var(--text);
+}
+
+main {
+  background: rgba(8, 14, 33, 0.88) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 32px 80px rgba(4, 9, 26, 0.32) !important;
+}
+
+section[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, rgba(7, 12, 30, 0.96), rgba(11, 17, 41, 0.96)) !important;
+  border-right: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+section[data-testid="stSidebar"] .css-1d391kg,
+section[data-testid="stSidebar"] .css-1iyzbn1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3,
+section[data-testid="stSidebar"] p {
+  color: var(--text) !important;
+}
+
+button, .stButton>button {
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  background: linear-gradient(135deg, rgba(75, 147, 255, 0.95), rgba(75, 208, 255, 0.95)) !important;
+  color: white !important;
+  box-shadow: 0 18px 40px rgba(12, 37, 93, 0.18) !important;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+button:hover, .stButton>button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 22px 48px rgba(12, 37, 93, 0.24) !important;
+}
+
+input, textarea, select {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--text) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #f3f8ff !important;
+}
+
+.stAlert > div {
+  border-radius: 18px !important;
+}
+
+.css-16s0cw6 {
+  background: rgba(255,255,255,0.02) !important;
+}
+
+@keyframes streamlitGlow {
+  0% { box-shadow: 0 0 0 rgba(90, 180, 255, 0); }
+  50% { box-shadow: 0 0 48px rgba(90, 180, 255, 0.08); }
+  100% { box-shadow: 0 0 0 rgba(90, 180, 255, 0); }
+}
+
+.stApp {
+  animation: streamlitGlow 12s ease-in-out infinite alternate;
+}

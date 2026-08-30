@@ -1,0 +1,8 @@
+data_root:   data/accident_dataset
+models_root: models
+logs_root:   logs
+
+image:
+  train_dir: data/accident_dataset/train
+  val_dir:   data/accident_dataset/val
+  test_dir:  data/accident_dataset/test
