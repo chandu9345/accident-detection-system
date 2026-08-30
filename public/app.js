@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   // ── 1. Animated Cyber Canvas ──
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
