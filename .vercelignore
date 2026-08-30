@@ -1,0 +1,19 @@
+﻿venv/
+.venv/
+env/
+accident _data/
+data/
+datasets/
+logs/
+tests/
+preprocessing/
+models/
+*.pt
+*.pth
+*.h5
+*.onnx
+*.log
+.git/
+.vscode/
+.idea/
+Thumbs.db

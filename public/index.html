@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Accident Detection & Risk Prediction System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="scanline"></div>
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-badge">🚨 LIVE MONITORING</div>
+      <h1 class="brand-title">ACCIDENT <span>DEFENSE</span> AI</h1>
+      <p class="brand-subtitle">Automated Collision Assessment & Real-Time Highway Risk Engine</p>
+    </div>
+    <div class="system-status">
+      <div class="status-indicator online"></div>
+      <span class="status-text">SYSTEM SECURE • VERCEL SERVERLESS</span>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="image-tab">
+      <span class="tab-icon">📸</span> IMAGE DETECTION
+    </button>
+    <button class="tab-btn" data-tab="video-tab">
+      <span class="tab-icon">🎥</span> VIDEO SCANNER
+    </button>
+    <button class="tab-btn" data-tab="severity-tab">
+      <span class="tab-icon">💥</span> SEVERITY RATING
+    </button>
+    <button class="tab-btn" data-tab="location-tab">
+      <span class="tab-icon">📍</span> LOCATION RISK
+    </button>
+    <button class="tab-btn" data-tab="map-tab">
+      <span class="tab-icon">🗺️</span> TRAFFIC MAP
+    </button>
+    <button class="tab-btn" data-tab="sms-tab">
+      <span class="tab-icon">🚨</span> SMS DISPATCH
+    </button>
+  </nav>
+
+  <main class="app-container">
+    
+    <!-- 1. IMAGE DETECTION TAB -->
+    <section id="image-tab" class="tab-content active">
+      <div class="panel-card">
+        <div class="card-header">
+          <h2>📸 Image Accident Classification</h2>
+          <span class="tag">DEEP INFERENCE ENGINE</span>
+        </div>
+        <p class="card-desc">Upload a high-resolution highway or CCTV camera frame to instantly detect vehicle collisions, rollover, or obstructions.</p>
+        
+        <div class="upload-dropzone" id="img-dropzone">
+          <input type="file" id="img-input" accept="image/*" class="file-input">
+          <div class="dropzone-content">
+            <div class="upload-icon">⬆</div>
+            <p class="upload-title">Drag & Drop Image Here or <span class="browse-link">Browse</span></p>
+            <p class="upload-hint">Supports JPG, PNG, WEBP (Up to 20MB)</p>
+          </div>
+        </div>
+
+        <div id="img-preview-container" class="preview-container hidden">
+          <div class="preview-box">
+            <img id="img-preview" alt="Preview">
+            <div class="hud-corner top-left"></div>
+            <div class="hud-corner top-right"></div>
+            <div class="hud-corner bottom-left"></div>
+            <div class="hud-corner bottom-right"></div>
+          </div>
+          <button id="img-analyze-btn" class="cyber-btn action-btn">⚡ INITIATE AI DETECTION</button>
+        </div>
+
+        <div id="img-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+    <!-- 2. VIDEO SCANNER TAB -->
+    <section id="video-tab" class="tab-content">
+      <div class="panel-card">
+        <div class="card-header">
+          <h2>🎥 Highway CCTV Video Scanner</h2>
+          <span class="tag">TEMPORAL ANALYSIS</span>
+        </div>
+        <p class="card-desc">Scan continuous dashcam and CCTV video feeds to flag accident timestamps and impact anomalies.</p>
+        
+        <div class="upload-dropzone" id="vid-dropzone">
+          <input type="file" id="vid-input" accept="video/*" class="file-input">
+          <div class="dropzone-content">
+            <div class="upload-icon">🎬</div>
+            <p class="upload-title">Select or Drop MP4 / AVI Video</p>
+            <p class="upload-hint">Dashcam Footage, Traffic Cam clips</p>
+          </div>
+        </div>
+
+        <div id="vid-preview-container" class="preview-container hidden">
+          <video id="vid-preview" controls class="video-player"></video>
+          <button id="vid-analyze-btn" class="cyber-btn action-btn">🔍 ANALYZE VIDEO FRAMES</button>
+        </div>
+
+        <div id="vid-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+    <!-- 3. SEVERITY RATING TAB -->
+    <section id="severity-tab" class="tab-content">
+      <div class="panel-card">
+        <div class="card-header">
+          <h2>💥 Accident Damage & Severity Assessment</h2>
+          <span class="tag">DISPATCH TRIAGE</span>
+        </div>
+        <p class="card-desc">Analyze collision deformation and impact intensity to categorize incident severity (Minor, Moderate, Severe) for immediate emergency routing.</p>
+        
+        <div class="upload-dropzone" id="sev-dropzone">
+          <input type="file" id="sev-input" accept="image/*" class="file-input">
+          <div class="dropzone-content">
+            <div class="upload-icon">💥</div>
+            <p class="upload-title">Upload Crash Photo for Severity Classification</p>
+          </div>
+        </div>
+
+        <div id="sev-preview-container" class="preview-container hidden">
+          <div class="preview-box">
+            <img id="sev-preview" alt="Crash Photo Preview">
+          </div>
+          <button id="sev-analyze-btn" class="cyber-btn action-btn">📊 CALCULATE SEVERITY SCORE</button>
+        </div>
+
+        <div id="sev-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+    <!-- 4. LOCATION RISK PREDICTOR TAB -->
+    <section id="location-tab" class="tab-content">
+      <div class="panel-card">
+        <div class="card-header">
+          <h2>📍 Real-Time Location Risk Predictor</h2>
+          <span class="tag">OPEN-METEO & GEOPY ENGINE</span>
+        </div>
+        <p class="card-desc">Evaluate real-time highway accident risk by combining live weather conditions, rush-hour traffic index, time of day, and historical collision trends.</p>
+        
+        <div class="search-bar-box">
+          <input type="text" id="loc-input" placeholder="e.g. NH-48 Delhi, MG Road Bangalore, Marine Drive Mumbai..." class="cyber-input">
+          <button id="loc-search-btn" class="cyber-btn">PREDICT RISK</button>
+        </div>
+
+        <div class="quick-select">
+          <span class="quick-label">Quick Select:</span>
+          <button class="quick-btn" data-loc="NH-48 Delhi">NH-48 Delhi</button>
+          <button class="quick-btn" data-loc="MG Road Bangalore">MG Road Bangalore</button>
+          <button class="quick-btn" data-loc="Marine Drive Mumbai">Marine Drive Mumbai</button>
+          <button class="quick-btn" data-loc="Anna Salai Chennai">Anna Salai Chennai</button>
+          <button class="quick-btn" data-loc="Outer Ring Road Hyderabad">Hyderabad ORR</button>
+        </div>
+
+        <div id="loc-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+    <!-- 5. TRAFFIC MAP TAB -->
+    <section id="map-tab" class="tab-content">
+      <div class="panel-card">
+        <div class="card-header">
+          <h2>🗺️ Live Traffic & Incident Map</h2>
+          <span class="tag">OPENSTREETMAP HUD</span>
+        </div>
+        <p class="card-desc">Interactive geographic monitoring showing regional crash hotspots, hospital hubs, and live traffic telemetry.</p>
+        
+        <div id="map" class="hud-map"></div>
+      </div>
+    </section>
+
+    <!-- 6. SMS DISPATCH TAB -->
+    <section id="sms-tab" class="tab-content">
+      <div class="panel-card">
+        <div class="card-header">
+          <h2>🚨 Emergency SMS Alert Console</h2>
+          <span class="tag">FAST2SMS GATEWAY</span>
+        </div>
+        <p class="card-desc">Automated SMS dispatch to emergency services, highway patrol, and family emergency contacts with exact GPS coordinates.</p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Emergency Phone Number (10 Digits)</label>
+            <input type="tel" id="sms-phone" placeholder="e.g. 9876543210" class="cyber-input" value="9876543210">
+          </div>
+          <div class="form-group">
+            <label>Incident Severity</label>
+            <select id="sms-severity" class="cyber-input">
+              <option value="Severe">🚨 Severe Impact</option>
+              <option value="Moderate">🟡 Moderate Collision</option>
+              <option value="Minor">🟢 Minor Scratch / Stall</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label>Incident Location Description</label>
+            <input type="text" id="sms-location" placeholder="e.g. NH-48 Mile Marker 42 near Gurugram" class="cyber-input" value="NH-48 Delhi-Jaipur Highway">
+          </div>
+        </div>
+
+        <button id="sms-send-btn" class="cyber-btn emergency-btn">🚨 SEND EMERGENCY SMS BROADCAST</button>
+        <div id="sms-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>AI ACCIDENT DEFENSE SYSTEM • HOSTED ON VERCEL SERVERLESS • POWERED BY FASTAPI & JAVASCRIPT</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
