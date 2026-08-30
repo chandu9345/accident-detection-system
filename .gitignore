@@ -57,3 +57,6 @@ tmp/
 .coverage
 htmlcov/
 .pytest_cache/
+
+.vercel
+.env*
